@@ -33,6 +33,6 @@ public class ArmoredCar extends Car implements Floatable, Flyable {
     public void aMethod(){
         //System.out.println(duration); // Won't compile
         System.out.println(Flyable.duration); // output 10
-        System.out.println(Floatable.duration); // output 20
+        System.out.println(Floatable.duration); // output 10
     }
 }
