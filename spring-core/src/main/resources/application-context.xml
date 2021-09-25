@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="toyota" class="com.modern.process.domain.Car">
+        <!--constructor based DI-->
+        <!-- <constructor-arg ref="engine"/>
+        <constructor-arg ref="trailer"/>-->
+
+        <!--setter based DI-->
+        <property name="engine" ref="engine"/>
+        <property name="trailer" ref="trailer"/>
+    </bean>
+
+    <bean id="engine" class="com.modern.process.domain.Engine">
+        <property name="type" value="v4"/>
+        <property name="volume" value="2"/>
+    </bean>
+
+    <bean id="trailer" class="com.modern.process.domain.Trailer">
+    </bean>
+</beans>
