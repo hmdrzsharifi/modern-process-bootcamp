@@ -12,6 +12,7 @@
     <modules>
         <module>core-java-module</module>
         <module>spring-boot-module</module>
+        <module>spring-core</module>
     </modules>
 
     <properties>
