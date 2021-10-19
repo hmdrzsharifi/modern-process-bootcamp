@@ -5,6 +5,7 @@ import com.modern.process.repository.EmployeeRepository;
 import com.modern.process.web.rest.errors.EmployeeNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +17,16 @@ public class EmployeeResource {
 
     private final EmployeeRepository repository;
 
+    @Value("${app.name}")
+    private String appName;
+
     public EmployeeResource(EmployeeRepository repository) {
         this.repository = repository;
     }
 
     @GetMapping("/employees")
     List<Employee> all(){
-        log.trace("start get all employee");
+        log.trace("start get all employee " + appName);
         return repository.findAll();
     }
 
