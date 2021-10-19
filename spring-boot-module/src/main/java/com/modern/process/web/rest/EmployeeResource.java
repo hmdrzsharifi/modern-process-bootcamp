@@ -3,12 +3,16 @@ package com.modern.process.web.rest;
 import com.modern.process.domain.Employee;
 import com.modern.process.repository.EmployeeRepository;
 import com.modern.process.web.rest.errors.EmployeeNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class EmployeeResource {
+
+    private static final Logger log = LoggerFactory.getLogger(EmployeeResource.class);
 
     private final EmployeeRepository repository;
 
@@ -18,6 +22,7 @@ public class EmployeeResource {
 
     @GetMapping("/employees")
     List<Employee> all(){
+        log.trace("start get all employee");
         return repository.findAll();
     }
 
