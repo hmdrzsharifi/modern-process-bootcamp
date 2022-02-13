@@ -28,6 +28,10 @@ public class Post {
         this.title = title;
     }
 
+    public Post() {
+
+    }
+
     public Long getId() {
         return id;
     }
