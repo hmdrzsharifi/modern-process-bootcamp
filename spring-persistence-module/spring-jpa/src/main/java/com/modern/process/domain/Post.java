@@ -23,14 +23,18 @@ public class Post {
 
     private String title;
 
+    public Post() {
+
+    }
+
     public Post(Long id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public Post() {
-
-    }
+    @OneToOne (mappedBy = "post",
+               cascade = CascadeType.ALL)
+    private PostDetails postDetails;
 
     public Long getId() {
         return id;
@@ -46,5 +50,13 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public PostDetails getPostDetails() {
+        return postDetails;
+    }
+
+    public void setPostDetails(PostDetails postDetails) {
+        this.postDetails = postDetails;
     }
 }
