@@ -28,10 +28,6 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Post post = new Post();
-		post.setTitle("post_1");
-		postRepository.save(post);
-
 		PostComment postComment = new PostComment();
 		postComment.setReview("review1");
 		postComment.setComment_Date(new Date());
