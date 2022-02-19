@@ -21,6 +21,7 @@ public class OnetoOneAnnotaionFKBasedIntegrationTest {
 
         PostDetails postDetails = new PostDetails(null, null, "admin");
         postDetails.setPost(post);
+        post.setPostDetails(postDetails);
 
         //Post entry will automatically be created by hibernate, since cascade type is specified as ALL
         postDetailsRepository.save(postDetails);
