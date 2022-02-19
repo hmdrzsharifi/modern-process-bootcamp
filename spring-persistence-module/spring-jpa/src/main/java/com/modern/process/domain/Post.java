@@ -3,6 +3,8 @@ package com.modern.process.domain;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "post", schema = "public")
@@ -36,6 +38,10 @@ public class Post {
                cascade = CascadeType.ALL)
     private PostDetails postDetails;
 
+    @OneToMany(mappedBy = "post",
+               cascade = CascadeType.ALL)
+    private Set<PostComment> postCommentSet = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -58,5 +64,18 @@ public class Post {
 
     public void setPostDetails(PostDetails postDetails) {
         this.postDetails = postDetails;
+    }
+
+    public Set<PostComment> getPostCommentSet() {
+        return postCommentSet;
+    }
+
+    public void setPostCommentSet(Set<PostComment> postCommentSet) {
+        this.postCommentSet = postCommentSet;
+    }
+
+    public void addComment(PostComment postComment) {
+        postCommentSet.add(postComment);
+        postComment.setPost(this);
     }
 }

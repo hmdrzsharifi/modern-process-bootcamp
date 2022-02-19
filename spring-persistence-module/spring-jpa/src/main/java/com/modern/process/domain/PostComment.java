@@ -23,6 +23,20 @@ public class PostComment {
     @Enumerated(EnumType.STRING)
     private CommentType type;
 
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    public PostComment() {
+    }
+
+    public PostComment(Long id, String review, Date comment_Date, CommentType type) {
+        this.id = id;
+        this.review = review;
+        this.comment_Date = comment_Date;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }
@@ -61,5 +75,13 @@ public class PostComment {
 
     public void setType(CommentType type) {
         this.type = type;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
