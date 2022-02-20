@@ -3,7 +3,9 @@ package com.modern.process.domain;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,6 +44,16 @@ public class Post {
                cascade = CascadeType.ALL)
     private Set<PostComment> postCommentSet = new HashSet<>();
 
+    /*@ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "post_tag",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    List<Tag> tags = new ArrayList<>();*/
+
+    @OneToMany(mappedBy = "post")
+    List<PostTag> postTags = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -77,5 +89,21 @@ public class Post {
     public void addComment(PostComment postComment) {
         postCommentSet.add(postComment);
         postComment.setPost(this);
+    }
+
+    /*public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }*/
+
+    public List<PostTag> getPostTags() {
+        return postTags;
+    }
+
+    public void setPostTags(List<PostTag> postTags) {
+        this.postTags = postTags;
     }
 }
