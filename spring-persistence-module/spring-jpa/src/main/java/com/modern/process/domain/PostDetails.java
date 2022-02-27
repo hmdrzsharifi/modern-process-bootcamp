@@ -17,7 +17,7 @@ public class PostDetails {
     @Column(name = "created_by")
     private String createdBy;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     Post post;
 

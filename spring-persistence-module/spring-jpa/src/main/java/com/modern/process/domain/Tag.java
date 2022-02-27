@@ -17,7 +17,7 @@ public class Tag {
    /* @ManyToMany(mappedBy = "tags")
     List<Post> posts = new ArrayList<>();*/
 
-    @OneToMany(mappedBy = "tag")
+    @OneToMany(mappedBy = "tag", fetch = FetchType.LAZY)
     List<PostTag> postTags = new ArrayList<>();
 
     public Tag(Long id, String name) {

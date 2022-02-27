@@ -36,11 +36,11 @@ public class Post {
         this.title = title;
     }
 
-    @OneToOne (mappedBy = "post",
+    @OneToOne(mappedBy = "post", fetch = FetchType.LAZY,
                cascade = CascadeType.ALL)
     private PostDetails postDetails;
 
-    @OneToMany(mappedBy = "post",
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
                cascade = CascadeType.ALL)
     private Set<PostComment> postCommentSet = new HashSet<>();
 
@@ -51,7 +51,7 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     List<Tag> tags = new ArrayList<>();*/
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     List<PostTag> postTags = new ArrayList<>();
 
     public Long getId() {

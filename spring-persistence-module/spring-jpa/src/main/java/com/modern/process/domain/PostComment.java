@@ -23,7 +23,7 @@ public class PostComment {
     @Enumerated(EnumType.STRING)
     private CommentType type;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
