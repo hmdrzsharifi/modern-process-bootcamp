@@ -1,11 +1,13 @@
 package com.caribou.bank.web.rest;
 
-import com.caribou.bank.domain.Office;
-import com.caribou.bank.repository.OfficeRepository;
 import com.caribou.bank.service.OfficeService;
+import com.caribou.bank.service.dto.OfficeDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
@@ -20,9 +22,9 @@ public class OfficeResource {
     }
 
     @PostMapping("/offices")
-    public Office createOffice(@RequestBody Office office){
-        log.debug("REST request to save office : {}", office);
-        Office result = officeService.save(office);
+    public OfficeDTO createOffice(@RequestBody OfficeDTO officeDTO){
+        log.debug("REST request to save office : {}", officeDTO);
+        OfficeDTO result = officeService.save(officeDTO);
         return result;
     }
 }
