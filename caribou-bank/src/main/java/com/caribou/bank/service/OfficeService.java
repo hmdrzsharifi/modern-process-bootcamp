@@ -8,6 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class OfficeService {
 
@@ -30,8 +35,39 @@ public class OfficeService {
         office = officeRepository.save(office);
 
         // mapping Entity to DTO
-
         return officeMapper.toDto(office);
     }
 
+    /**
+     * Get all the offices.
+     *
+     * @return the list of entities.
+     */
+    public List<OfficeDTO> findAll() {
+        log.debug("Request to get all offices");
+        return officeRepository.findAll().stream()
+            .map(officeMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
+     * Get one office by id.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    public Optional<OfficeDTO> findOne(Long id) {
+        log.debug("Request to get Office : {}", id);
+        return officeRepository.findById(id).map(officeMapper::toDto);
+    }
+
+    /**
+     * Delete the office by id.
+     *
+     * @param id the id of the entity.
+     */
+    public void delete(Long id) {
+        log.debug("Request to delete Office : {}", id);
+        officeRepository.deleteById(id);
+    }
 }

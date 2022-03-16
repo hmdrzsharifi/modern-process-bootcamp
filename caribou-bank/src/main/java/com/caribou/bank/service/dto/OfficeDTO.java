@@ -1,5 +1,7 @@
 package com.caribou.bank.service.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,8 +11,15 @@ import java.util.Date;
 public class OfficeDTO implements Serializable {
 
     private Long id;
+
+    @NotNull
+    @Size(max = 100)
     private String name;
+
+    @NotNull
     private Date openingDate;
+
+    @Size(max = 100)
     private String ExternalId;
     private Long parentId;
 
