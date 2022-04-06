@@ -71,7 +71,10 @@ public class OfficeResource {
         if (officeDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        OfficeDTO result = officeService.save(officeDTO);
+        if (!officeService.existsById(officeDTO.getId())){
+            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+        OfficeDTO result = officeService.update(officeDTO);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, officeDTO.getId().toString()))
                 .body(result);

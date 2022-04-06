@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Service Implementation for managing {@link Office}.
+ */
 @Service
 public class OfficeService {
 
@@ -31,10 +34,15 @@ public class OfficeService {
         log.debug("Request to save office: {}", officeDTO);
         // mapping DTO to Entity
         Office office = officeMapper.toEntity(officeDTO);
-
         office = officeRepository.save(office);
-
         // mapping Entity to DTO
+        return officeMapper.toDto(office);
+    }
+
+    public OfficeDTO update(OfficeDTO officeDTO) {
+        log.debug("Request to update office: {}", officeDTO);
+        Office office = officeMapper.toEntity(officeDTO);
+        office = officeRepository.save(office);
         return officeMapper.toDto(office);
     }
 
@@ -70,4 +78,10 @@ public class OfficeService {
         log.debug("Request to delete Office : {}", id);
         officeRepository.deleteById(id);
     }
+
+    public boolean existsById(Long id) {
+        return officeRepository.existsById(id);
+    }
+
+
 }
