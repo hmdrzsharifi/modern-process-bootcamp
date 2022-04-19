@@ -30,6 +30,12 @@ public class OfficeService {
         this.officeMapper = officeMapper;
     }
 
+    /**
+     * Save an office.
+     *
+     * @param officeDTO the entity to save.
+     * @return the persisted entity.
+     */
     public OfficeDTO save(OfficeDTO officeDTO) {
         log.debug("Request to save office: {}", officeDTO);
         // mapping DTO to Entity
@@ -39,6 +45,12 @@ public class OfficeService {
         return officeMapper.toDto(office);
     }
 
+    /**
+     * Update an office.
+     *
+     * @param officeDTO the entity to update.
+     * @return the updated entity.
+     */
     public OfficeDTO update(OfficeDTO officeDTO) {
         log.debug("Request to update office: {}", officeDTO);
         Office office = officeMapper.toEntity(officeDTO);
@@ -82,6 +94,5 @@ public class OfficeService {
     public boolean existsById(Long id) {
         return officeRepository.existsById(id);
     }
-
 
 }
