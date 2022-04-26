@@ -4,6 +4,7 @@ import com.caribou.bank.config.HeaderUtil;
 import com.caribou.bank.service.AccountTransfersService;
 import com.caribou.bank.service.SavingsAccountTransactionService;
 import com.caribou.bank.service.dto.AccountTransferDTO;
+import com.caribou.bank.service.dto.AccountTransferTransactionDTO;
 import com.caribou.bank.service.dto.SavingsAccountTransactionDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +27,13 @@ public class AccountTransfersResource {
     }
 
     @PostMapping("/account-transfers")
-    public ResponseEntity<SavingsAccountTransactionDTO> transferFunds(@RequestBody AccountTransferDTO accountTransferDTO) throws URISyntaxException {
+    public ResponseEntity<AccountTransferTransactionDTO> transferFunds(@RequestBody AccountTransferDTO accountTransferDTO) throws URISyntaxException {
         log.debug("REST request to transferFunds from SavingsAccount to SavingsAccount: {}", accountTransferDTO);
         /*if (savingsAccountTransactionDTO.getId() != null) {
             throw new BadRequestAlertException("A new savingsAccountTransaction cannot already have an ID", ENTITY_NAME, "idexists");
         }*/
 
-        SavingsAccountTransactionDTO result = accountTransfersService.handletransferFunds(accountTransferDTO);
+        AccountTransferTransactionDTO result = accountTransfersService.handleTransferFunds(accountTransferDTO);
         return ResponseEntity.created(new URI("/api/savings-account-transactions/" + result))
                 //.headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.toString()))
                 .body(result);

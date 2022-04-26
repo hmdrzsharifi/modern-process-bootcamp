@@ -1,6 +1,6 @@
 package com.caribou.bank.domain;
 
-import com.caribou.bank.web.rest.errors.SavingsAccountBlockedException;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * The SavingsAccount entity.
  */
 @Entity
-@SequenceGenerator(name = "sequence-generator", initialValue = 1, sequenceName = "savingsAccount_sequence")
+@SequenceGenerator(name = "sequence-generator", initialValue = 1, sequenceName = "savings_account_sequence")
 @Table(name = "m_savings_account")
 public class SavingsAccount extends AbstractPersistableCustom implements Serializable {
 
@@ -31,6 +31,7 @@ public class SavingsAccount extends AbstractPersistableCustom implements Seriali
     private BigDecimal minRequiredOpeningBalance;
 
     @Column(name = "account_balance_derived", scale = 6, precision = 19)
+    @ColumnDefault("0")
     private BigDecimal accountBalance = BigDecimal.ZERO;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -92,10 +93,4 @@ public class SavingsAccount extends AbstractPersistableCustom implements Seriali
     public void setAccountBalance(BigDecimal accountBalance) {
         this.accountBalance = accountBalance;
     }
-
-    public void validateForAccountBlock() {
-        final SavingsAccountStatusType currentStatus = this.getStatus();
-        if (SavingsAccountStatusType.BLOCK.equals(currentStatus)) {
-            //throw new SavingsAccountBlockedException(this.getId());
-        }
-    }}
+}

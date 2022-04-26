@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@SequenceGenerator(name = "sequence-generator", initialValue = 1, sequenceName = "account_transfer_transaction_sequence")
 @Table(name = "m_account_transfer_transaction")
 public class AccountTransferTransaction extends AbstractPersistableCustom implements Serializable {
 

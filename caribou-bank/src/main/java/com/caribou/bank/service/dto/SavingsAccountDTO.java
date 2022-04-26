@@ -26,6 +26,8 @@ public class SavingsAccountDTO implements Serializable {
 
     private BigDecimal minRequiredOpeningBalance;
 
+    private BigDecimal accountBalance;
+
     private Long clientId;
 
     public Long getId() {
@@ -82,5 +84,13 @@ public class SavingsAccountDTO implements Serializable {
 
     public void setClientId(Long clientId) {
         this.clientId = clientId;
+    }
+
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public void setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
     }
 }

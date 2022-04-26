@@ -5,13 +5,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * The SavingsAccountTransaction entity.
- */
 @Entity
-@SequenceGenerator(name = "sequence-generator", initialValue = 1, sequenceName = "savingsAccountTransaction_sequence")
+@SequenceGenerator(name = "sequence-generator", initialValue = 1, sequenceName = "savings_account_transaction_sequence")
 @Table(name = "m_savings_account_transaction")
 public class SavingsAccountTransaction extends AbstractPersistableCustom implements Serializable {
+
 
     @Column(name = "transaction_type")
     @Enumerated(EnumType.STRING)
@@ -24,11 +22,11 @@ public class SavingsAccountTransaction extends AbstractPersistableCustom impleme
     @Column(name = "amount", scale = 6, precision = 19, nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "running_balance_derived", scale = 6, precision = 19, nullable = true)
+    @Column(name = "running_balance_derived", scale = 6, precision = 19)
     private BigDecimal runningBalance;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "savings_account_id")
+    @JoinColumn(name = "saving_account_id")
     private SavingsAccount savingsAccount;
 
     public SavingsAccountTransactionType getTransactionType() {
