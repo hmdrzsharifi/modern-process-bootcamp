@@ -15,6 +15,7 @@
         <module>spring-core</module>
         <module>spring-persistence-module</module>
         <module>caribou-bank</module>
+        <module>frontend-module</module>
     </modules>
 
     <properties>
