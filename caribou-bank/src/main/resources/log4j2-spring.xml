@@ -35,7 +35,7 @@
         </Logger>
 
         <!-- LOG everything at INFO level -->
-        <Root level="info">
+        <Root level="${logging.level.root}">
             <AppenderRef ref="AsyncAppender"/>
         </Root>
     </Loggers>
