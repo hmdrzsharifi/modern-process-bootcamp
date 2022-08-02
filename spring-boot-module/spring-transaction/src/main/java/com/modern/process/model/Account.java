@@ -1,49 +1,53 @@
 package com.modern.process.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
 public class Account {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  @Column(name = "name")
-  private String name;
-  @Column(name = "amount")
-  private BigDecimal amount;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  public Account(String name, BigDecimal amount) {
-    this.name = name;
-    this.amount = amount;
-  }
+    @Column
+    private String name;
 
-  public Account() {
+    @Column
+    private BigDecimal amount;
 
-  }
+    public Account() {
+    }
 
-  public long getId() {
-    return id;
-  }
+    public Account(String name, BigDecimal amount) {
+        this.name = name;
+        this.amount = amount;
+    }
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public BigDecimal getAmount() {
-    return amount;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setAmount(BigDecimal amount) {
-    this.amount = amount;
-  }
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 }
