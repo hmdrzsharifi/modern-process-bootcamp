@@ -3,8 +3,8 @@ package com.modern.process.service;
 import com.modern.process.model.Account;
 import com.modern.process.repository.AccountRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,7 +33,7 @@ public class TransferService {
             // throw new RuntimeException("Oh no! Something went wrong!");
     }
 
-    /*@Transactional (rollbackOn = Exception.class)
+    /*@Transactional (rollbackFor = Exception.class)
     public void transferMoney(long idSender, long idReceiver, BigDecimal amount) throws FileNotFoundException {
 
         try {
