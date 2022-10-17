@@ -13,18 +13,21 @@
 
 
     <aop:config>
+        <aop:aspect id="aspects" ref="doAroundAspect">
+            <aop:pointcut id="pointCutAround"
+                          expression="execution(* com.modern.process.config.xml.SampleAdder+.*(..))"/>
+            <aop:around method="aroundAdvice" pointcut-ref="pointCutAround"/>
+        </aop:aspect>
         <aop:aspect id="aspects" ref="doBeforeAspect">
             <aop:pointcut id="pointCutBefore"
                 expression="execution(* com.modern.process.config.xml.SampleAdder+.*(..))"/>
             <aop:before method="beforeAdvice" pointcut-ref="pointCutBefore" />
         </aop:aspect>
-
         <aop:aspect id="aspects" ref="doAfterAspect">
             <aop:pointcut id="pointCutAfter"
                  expression="execution(* com.modern.process.config.xml.SampleAdder+.*(..))"/>
             <aop:after method="afterAdvice" pointcut-ref="pointCutAfter" />
         </aop:aspect>
-
         <aop:aspect id="aspects" ref="doAfterReturningAspect">
             <aop:pointcut id="pointCutAfterReturning"
                 expression="execution(* com.modern.process.config.xml.SampleAdder+.*(..))"/>
@@ -39,10 +42,5 @@
                  pointcut-ref="pointCutAfterThrowing" throwing="exception"/>
         </aop:aspect>
 
-        <aop:aspect id="aspects" ref="doAroundAspect">
-            <aop:pointcut id="pointCutAround"
-                          expression="execution(* com.modern.process.config.xml.SampleAdder+.*(..))"/>
-            <aop:around method="aroundAdvice" pointcut-ref="pointCutAround"/>
-        </aop:aspect>
     </aop:config>
 </beans>
